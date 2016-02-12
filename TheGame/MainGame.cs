@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using TheGame.Entities.Logical;
 
 namespace TheGame
 {
@@ -20,6 +21,12 @@ namespace TheGame
 
         protected override void Initialize()
         {
+            InputHandler.CreateInstance(this);
+            Components.Add(InputHandler.Instance);
+
+            //Exit game on exit action
+            InputHandler.Instance[ActionControlls.Exit].OnPressed += gt => {Exit();};
+            
             //TODO: initialization
             base.Initialize();
         }
@@ -39,10 +46,6 @@ namespace TheGame
         protected override void Update(GameTime gameTime)
         {
             //TODO: update logic
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-            {
-                Exit();
-            }
             base.Update(gameTime);
         }
 
