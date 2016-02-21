@@ -1,12 +1,17 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Input;
+﻿using FarseerPhysics.Dynamics;
+using Microsoft.Xna.Framework;
+using TheGame.Entities.Drawable;
 using TheGame.Entities.Logical;
 
 namespace TheGame
 {
-    class MainGame : Game
+    internal class MainGame : Game
     {
         private GraphicsDeviceManager _graphicsDeviceManager;
+        private World _world;
+
+        private const float GravityY = 9.8f; //average earth's gravity
+        private const float GravityX = 0f;
 
         public MainGame()
         {
@@ -23,7 +28,7 @@ namespace TheGame
         {
             InputHandler.CreateInstance(this);
             Components.Add(InputHandler.Instance);
-
+            Components.Add(new Map(this, "TestMap.tmx"));
             //Exit game on exit action
             InputHandler.Instance[ActionControlls.Exit].OnPressed += gt => {Exit();};
             
@@ -33,6 +38,8 @@ namespace TheGame
 
         protected override void LoadContent()
         {
+            _world = new World(new Vector2(GravityX, GravityY)); //Setting
+
             //TODO: load content
             base.LoadContent();
         }
