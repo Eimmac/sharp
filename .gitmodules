@@ -1,0 +1,4 @@
+[submodule "Libs/FNA"]
+	path = Libs/FNA
+	url = https://github.com/FNA-XNA/FNA.git
+	branch = master
