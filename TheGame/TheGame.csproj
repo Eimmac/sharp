@@ -50,6 +50,8 @@
     <Compile Include="Entities\Drawable\Player.cs" />
     <Compile Include="Entities\Logical\Camera2D.cs" />
     <Compile Include="Entities\Logical\InputHandler.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="GC.cs" />
     <Compile Include="MainGame.cs" />
     <Compile Include="Entities\Drawable\Map.cs" />
     <Compile Include="Program.cs" />

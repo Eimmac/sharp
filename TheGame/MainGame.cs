@@ -1,5 +1,4 @@
-﻿using FarseerPhysics.Dynamics;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using TheGame.Entities.Drawable;
 using TheGame.Entities.Logical;
 
@@ -8,10 +7,6 @@ namespace TheGame
     internal class MainGame : Game
     {
         private GraphicsDeviceManager _graphicsDeviceManager;
-        private World _world;
-
-        private const float GravityY = 9.8f; //average earth's gravity
-        private const float GravityX = 0f;
 
         public MainGame()
         {
@@ -21,6 +16,9 @@ namespace TheGame
             //Folder where we will save our game assets (Pictures, music, etc..)
             Content.RootDirectory = "Content";
 
+            //TODO: make our own pointer graphics
+            IsMouseVisible = true;
+
             Window.Title = "Outstanding Game Name";
         }
 
@@ -28,7 +26,10 @@ namespace TheGame
         {
             InputHandler.CreateInstance(this);
             Components.Add(InputHandler.Instance);
+
+            //TODO: loading map for test purposes
             Components.Add(new Map(this, "TestMap.tmx"));
+
             //Exit game on exit action
             InputHandler.Instance[ActionControlls.Exit].OnPressed += gt => {Exit();};
             
@@ -38,8 +39,6 @@ namespace TheGame
 
         protected override void LoadContent()
         {
-            _world = new World(new Vector2(GravityX, GravityY)); //Setting
-
             //TODO: load content
             base.LoadContent();
         }

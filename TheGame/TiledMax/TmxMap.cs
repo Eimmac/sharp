@@ -55,11 +55,20 @@ namespace TheGame.TiledMax
             var tileSet = TileSets.Single(ts => ts.FirstGID - 1 < tileId && ts.TileCount + ts.FirstGID - 1 >= tileId);
             tileId -= tileSet.FirstGID;
             var rectangle = new Rectangle(tileSet.TileWidth * (tileId % tileSet.Columns), TileHeight * (tileId / tileSet.Columns), tileSet.TileWidth, tileSet.TileHeight);
-            return new Tile()
+            return new Tile
             {
                 Rectangle = rectangle,
                 Texture = tileSet.Image.Texture
             };
+        }
+
+        private Color? _backgroundColor;
+        public Color GetBackgroundColor()
+        {
+            if (_backgroundColor.HasValue) return _backgroundColor.Value;
+
+            _backgroundColor = BackgroundColor.ToColor();
+            return _backgroundColor.Value;
         }
     }
 
@@ -166,7 +175,6 @@ namespace TheGame.TiledMax
         public int Width { get; set; }
         [XmlAttribute("height")]
         public int Height { get; set; }
-
         [XmlIgnore]
         public Texture2D Texture { get; set; }
     }

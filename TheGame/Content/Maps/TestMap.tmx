@@ -5,7 +5,7 @@
  </tileset>
  <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJztw7ENAAAIA6D6/9M+UZ0gIQEAoGmOAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA8GMBOKcAFw==
+   eJzt0YEJACAMBLHq/kO7Q7HwlARugqsCAOCnMxQ9dyh6/MjiRxY/sviRxY8sfmTxI4sfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwxwMhCAGj
   </data>
  </layer>
  <objectgroup name="Collision"/>
