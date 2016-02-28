@@ -86,6 +86,7 @@
   <PropertyGroup>
     <PostBuildEvent Condition="'$(OS)' == 'Windows_NT' ">copy "$(SolutionDir)Libs\FNA-Libs\win32" "$(ProjectDir)$(OutDir)"</PostBuildEvent>
     <PostBuildEvent Condition="'$(OS)' != 'Windows_NT'">
+	mkdir $(ProjectDir)$(OutDir)../Artifacts
 	cp -r $(ProjectDir)$(OutDir). $(ProjectDir)$(OutDir)../Artifacts/Windows
 	cp -r $(SolutionDir)Libs/FNA-Libs/win32/ $(ProjectDir)$(OutDir)../Artifacts/Windows
 	cp -r $(ProjectDir)$(OutDir). $(ProjectDir)$(OutDir)../Artifacts/Linux32
