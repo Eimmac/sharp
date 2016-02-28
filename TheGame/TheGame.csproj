@@ -85,7 +85,16 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent Condition="'$(OS)' == 'Windows_NT' ">copy "$(SolutionDir)Libs\FNA-Libs\win32" "$(ProjectDir)$(OutDir)"</PostBuildEvent>
-    <PostBuildEvent Condition="'$(OS)' != 'Windows_NT'">cp -r $(SolutionDir)Libs/FNA-Libs/lib/. $(ProjectDir)$(OutDir)</PostBuildEvent>
+    <PostBuildEvent Condition="'$(OS)' != 'Windows_NT'">
+	cp -r $(ProjectDir)$(OutDir) $(ProjectDir)$(OutDir)Windows
+	cp -r $(SolutionDir)Libs/FNA-Libs/win32/ $(ProjectDir)$(OutDir)Windows
+	cp -r $(ProjectDir)$(OutDir) $(ProjectDir)$(OutDir)Linux32
+	cp -r $(SolutionDir)Libs/FNA-Libs/lib/. $(ProjectDir)$(OutDir)Linux32
+	cp -r $(ProjectDir)$(OutDir) $(ProjectDir)$(OutDir)Linux64
+	cp -r $(SolutionDir)Libs/FNA-Libs/lib64/. $(ProjectDir)$(OutDir)Linux64
+	cp -r $(ProjectDir)$(OutDir) $(ProjectDir)$(OutDir)Mac
+	cp -r $(SolutionDir)Libs/FNA-Libs/osx/. $(ProjectDir)$(OutDir)Mac
+	</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
