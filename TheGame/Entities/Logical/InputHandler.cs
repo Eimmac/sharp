@@ -121,17 +121,17 @@ namespace TheGame.Entities.Logical
             };
         }
 
-        private static InputHandler _instance;
-
-        public static void CreateInstance(Game game)
+        public static InputHandler CreateInstance(Game game)
         {
-            if(_instance != null)
+            if(Instance != null)
                 throw new InvalidOperationException("InputHandler is already created");
 
-            _instance = new InputHandler(game);
+            Instance = new InputHandler(game);
+
+            return Instance;
         }
 
-        public static InputHandler Instance => _instance;
+        public static InputHandler Instance { get; private set; }
 
         #endregion
 

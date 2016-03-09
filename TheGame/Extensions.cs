@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Globalization;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using TheGame.Entities.Logical;
 
 namespace TheGame
 {
@@ -30,6 +32,11 @@ namespace TheGame
                     throw new InvalidOperationException("Invald hex representation of an ARGB or RGB color value.");
             }
             return color;
+        }
+
+        public static void Begin(this SpriteBatch spriteBatch, Camera2D camera2D)
+        {
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.AnisotropicClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, camera2D.Transform);
         }
     }
 }

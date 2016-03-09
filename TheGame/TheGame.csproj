@@ -48,6 +48,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Drawable\Entity.cs" />
     <Compile Include="Entities\Drawable\Player.cs" />
     <Compile Include="Entities\Logical\Camera2D.cs" />
     <Compile Include="Entities\Logical\InputHandler.cs" />
@@ -60,6 +61,9 @@
     <Compile Include="TiledMax\TmxMap.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Textures\Player.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="App.config" />
     <Content Include="Content\Maps\TestMap.tmx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

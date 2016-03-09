@@ -1,7 +1,9 @@
 ﻿using System;
 using FarseerPhysics.Dynamics;
+using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using TheGame.Entities.Logical;
 using TheGame.TiledMax;
 
 namespace TheGame.Entities.Drawable
@@ -17,7 +19,7 @@ namespace TheGame.Entities.Drawable
         {
             _mapName = mapName;
             _spriteBatch = new SpriteBatch(game.GraphicsDevice);
-            
+
         }
 
         protected override void LoadContent()
@@ -29,9 +31,27 @@ namespace TheGame.Entities.Drawable
             _world = new World(new Vector2(GC.GravityX, GC.GravityY));
 
             //TODO: load collision/objects to world from map
+            foreach (var layer in _tmxMap.Layers)
+            {
+                for (var y = 0; y < layer.Height; ++y)
+                {
+                    for (var x = 0; x < layer.Width; ++x)
+                    {
+                        var tileId = layer.Tiles[x, y];
+                        //TODO: get if tile is collidable
+                        if (tileId == 0) continue;
+                        var body = BodyFactory.CreateRectangle(_world, 32f, 32f, 1f, new Vector2(x * _tmxMap.TileWidth, y * _tmxMap.TileHeight));
+                        body.BodyType = BodyType.Static;
+                        _world.BodyList.Add(body);
+                    }
+                }
+            }
             //TODO: Load starting bodies to the world
 
-            Game.Components.Add(new Player(Game, _world));
+            var player = new Player(Game, _world);
+            Game.Components.Add(player);
+
+            Camera2D.Instance.Focus = player;
             base.LoadContent();
         }
 
@@ -45,7 +65,7 @@ namespace TheGame.Entities.Drawable
 
         public override void Draw(GameTime gameTime)
         {
-            _spriteBatch.Begin();
+            _spriteBatch.Begin(Camera2D.Instance);
             Game.GraphicsDevice.Clear(_tmxMap.GetBackgroundColor());
 
             foreach (var layer in _tmxMap.Layers)

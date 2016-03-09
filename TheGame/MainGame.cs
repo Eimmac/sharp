@@ -24,8 +24,8 @@ namespace TheGame
 
         protected override void Initialize()
         {
-            InputHandler.CreateInstance(this);
-            Components.Add(InputHandler.Instance);
+            Components.Add(InputHandler.CreateInstance(this));
+            Components.Add(Camera2D.CreateInstance(this));
 
             //TODO: loading map for test purposes
             Components.Add(new Map(this, "TestMap.tmx"));
