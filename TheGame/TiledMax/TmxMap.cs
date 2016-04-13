@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -27,6 +27,9 @@ namespace TheGame.TiledMax
         public List<TileSet> TileSets { get; set; }
         [XmlElement("layer")]
         public List<Layer> Layers { get; set; }
+        
+        [XmlElement("objectgroup")]
+        public List<ObjectGroup> ObjectGroups { get; set; }
 
         public static TmxMap LoadTmxMap(Game game, string mapName)
         {
@@ -70,6 +73,28 @@ namespace TheGame.TiledMax
             _backgroundColor = BackgroundColor.ToColor();
             return _backgroundColor.Value;
         }
+    }
+
+    public class ObjectGroup
+    {
+        [XmlAttribute("name")]
+        public string Name { get; set; }
+        [XmlElement("object")]
+        public List<TmxObject> Objects { get; set; }
+    }
+
+    public class TmxObject
+    {
+        [XmlAttribute("name")]
+        public string Name { get; set; }
+        [XmlAttribute("x")]
+        public float X { get; set; }
+        [XmlAttribute("y")]
+        public float Y { get; set; }
+        [XmlAttribute("width")]
+        public float Width { get; set; }
+        [XmlAttribute("height")]
+        public float Height { get; set; }
     }
 
     public class Layer
@@ -159,10 +184,38 @@ namespace TheGame.TiledMax
         public int TileWidth { get; set; }
         [XmlAttribute("tileheight")]
         public int TileHeight { get; set; }
+        private int _tileCount = -1;
         [XmlAttribute("tilecount")]
-        public int TileCount { get; set; }
+        public int TileCount {
+            get
+            {
+                if(_tileCount == -1)
+                {
+                    _tileCount = Image.Width / TileWidth * Image.Height / TileHeight;
+                }
+                return _tileCount;
+            }
+            set
+            {
+                _tileCount = value;
+            }
+        }
+        private int _columns = -1;
         [XmlAttribute("columns")]
-        public int Columns { get; set; }
+        public int Columns {
+            get
+            {
+                if(_columns == -1)
+                {
+                    _columns = Image.Width / TileWidth;
+                }
+                return _columns;
+            }
+            set
+            {
+                _columns = value;
+            }
+        }
         [XmlElement("image")]
         public Image Image { get; set; }
     }
@@ -179,4 +232,3 @@ namespace TheGame.TiledMax
         public Texture2D Texture { get; set; }
     }
 }
-
