@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework;
