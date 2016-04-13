@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" backgroundcolor="#00aaff" nextobjectid="4">
- <tileset firstgid="1" name="MapTextures" tilewidth="32" tileheight="32" tilecount="100" columns="10">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" backgroundcolor="#00aaff">
+ <tileset firstgid="1" name="MapTextures" tilewidth="32" tileheight="32">
   <image source="../Textures/MapTextures.png" width="320" height="320"/>
  </tileset>
  <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt0YEJACAMBLHq/kO7Q7HwlARugqsCAOCnMxQ9dyh6/MjiRxY/sviRxY8sfmTxI4sfAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACwxwMhCAGj
+   eJzt1sEKgCAQRVHr/z9aonUjTAaPOAdc6mIuomPczs2LHHr0fTE7Pfr0yLKa3VGs7pk8W82u82br0XfNrroDVY9qDz27/7n+u+/okUWPLHpk0SOLHln0yKJHFj0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOA/JoJYAfs=
   </data>
  </layer>
  <objectgroup name="Collision"/>
+ <objectgroup name="Objects">
+  <object name="Player" x="535.333" y="82" width="37.3333" height="33.3333"/>
+ </objectgroup>
 </map>

@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using TheGame.Entities.Logical;
 using TheGame.TiledMax;
+using System.Linq;
 
 namespace TheGame.Entities.Drawable
 {
@@ -47,8 +48,21 @@ namespace TheGame.Entities.Drawable
                 }
             }
             //TODO: Load starting bodies to the world
-
-            var player = new Player(Game, _world);
+            var playerPos = new Vector2(0, 0);
+            if(_tmxMap.ObjectGroups != null)
+            {
+                var objectGroup = _tmxMap.ObjectGroups.SingleOrDefault(og => og.Name == "Objects");
+                if(objectGroup != null && objectGroup.Objects != null)
+                {
+                    var playerInfo = objectGroup.Objects.SingleOrDefault(o => o.Name == "Player");
+                    if(playerInfo != null)
+                    {
+                        playerPos = new Vector2(playerInfo.X, playerInfo.Y);
+                    }
+                }
+            }
+            
+            var player = new Player(Game, _world, playerPos);
             Game.Components.Add(player);
 
             Camera2D.Instance.Focus = player;
