@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
 using Microsoft.Xna.Framework;
@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using TheGame.Entities.Logical;
 using TheGame.TiledMax;
 using System.Linq;
+using FarseerPhysics;
 
 namespace TheGame.Entities.Drawable
 {
@@ -41,7 +42,7 @@ namespace TheGame.Entities.Drawable
                         var tileId = layer.Tiles[x, y];
                         //TODO: get if tile is collidable
                         if (tileId == 0) continue;
-                        var body = BodyFactory.CreateRectangle(_world, 32f, 32f, 1f, new Vector2(x * _tmxMap.TileWidth, y * _tmxMap.TileHeight));
+                        var body = BodyFactory.CreateRectangle(_world, ConvertUnits.ToSimUnits(32f), ConvertUnits.ToSimUnits(32f), 1f, ConvertUnits.ToSimUnits(new Vector2(x * _tmxMap.TileWidth, y * _tmxMap.TileHeight)));
                         body.BodyType = BodyType.Static;
                         _world.BodyList.Add(body);
                     }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -232,4 +232,3 @@ namespace TheGame.TiledMax
         public Texture2D Texture { get; set; }
     }
 }
-
