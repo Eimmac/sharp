@@ -40,6 +40,7 @@ namespace TheGame.Entities.Drawable
              InputHandler.Instance[ActionControlls.Jump].OnDown += Player_OnUpPressed;
             InputHandler.Instance[ActionControlls.Down].OnDown += Player_OnDownDown;
 
+
             base.Initialize();
         }
 

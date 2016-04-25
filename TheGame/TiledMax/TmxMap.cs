@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
@@ -95,6 +96,39 @@ namespace TheGame.TiledMax
         public float Width { get; set; }
         [XmlAttribute("height")]
         public float Height { get; set; }
+        [XmlElement("polyline")]
+        public List<PolyLine> PolyLines { get; set; }
+    }
+
+    public class PolyLine
+    {
+        [XmlAttribute("points")]
+        public string Points { get; set; }
+
+        private List<Vector2> _points;
+
+        [XmlIgnore]
+        public List<Vector2> VectorPoints
+        {
+            get
+            {
+                if (_points == null)
+                {
+                    _points = new List<Vector2>();
+                    if (!string.IsNullOrWhiteSpace(Points))
+                    {
+                        var strpts = Points.Split(' ');
+                        foreach (var spt in strpts)
+                        {
+                            var sxy = spt.Split(',');
+
+                            _points.Add(new Vector2(float.Parse(sxy[0], new CultureInfo("en-US")), float.Parse(sxy[1], new CultureInfo("en-US"))));
+                        }
+                    }
+                }
+                return _points;
+            }
+        }
     }
 
     public class Layer

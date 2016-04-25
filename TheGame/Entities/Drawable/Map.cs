@@ -28,6 +28,11 @@ namespace TheGame.Entities.Drawable
         {
             //Can be in constructor, but left it here to be able to reload map in debug mode
             _tmxMap = TmxMap.LoadTmxMap(Game, _mapName);
+            var pts =
+                _tmxMap.ObjectGroups.FirstOrDefault(og => og.Name == "Collision")
+                    .Objects.FirstOrDefault()
+                    .PolyLines.FirstOrDefault()
+                    .VectorPoints;
 
             //TODO: load gravity from map settings
             _world = new World(new Vector2(GC.GravityX, GC.GravityY));

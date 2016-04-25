@@ -2,14 +2,35 @@
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="32" tileheight="32" backgroundcolor="#00aaff">
  <tileset firstgid="1" name="MapTextures" tilewidth="32" tileheight="32">
   <image source="../Textures/MapTextures.png" width="320" height="320"/>
+  <tile id="0">
+   <properties>
+    <property name="collision" value="true"/>
+   </properties>
+  </tile>
  </tileset>
  <layer name="Tile Layer 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt1kEKhTAMQEHt/Q/9t25MIWrMrzOQpS3tQ3TbYntyKo3i/f5N9f2s1OOJs9y95uy906N2zXGYiv3eNDtL5huhR97sLCOY7Jpnzlp/rUf0DkQ9omcy/2TRXrNZxZU7+ML9VNOjFz160aMXPXrRoxc9etGjFz0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGAdP1wGAjA=
+   eJzt2NFugzAMBVC6///oqZqmIRaSEGB2xjmSn0pbxzcFpcsCAADAE32oYkXJ0EM28shFHrnIIxd55CKPXOTR9trUneTxpTbzvzwfzJrHdn4jtddL9Ewiv3tk/a/l9/xmOgfXzJbHNosMrny2zJRHxize9noayWmWPNZZ/GdZ8ijtofX+ekIWb1nyeMKse2TK4+6z1gwy5XG2l9YZI4NWX9nyGJ3h3pnkTCZ3ZNrad9nyGD2r1859ozNt9VPKq5bhus+9azLmcWR+vWf1kUx69vL29b33lPos9ZQxj+9ee+rI/yM9z5XSZ7e+u7Sm3j5L10U5Msurq3a/OFpXrylKZB61+4U8YjMZvf/JI2ddvaYo0XO8qs7+vuSRu6JErztrRYled9YCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB+fAIXKQal
   </data>
  </layer>
- <objectgroup name="Collision"/>
- <objectgroup name="Objects">
-  <object name="Player" x="535.333" y="82" width="37.3333" height="33.3333"/>
+ <objectgroup color="#a09ca4" name="Collision">
+  <object x="224" y="960">
+   <polyline points="0,0 320,0 320,-32 352,-32 352,-64 384,-64 384,-96 416,-96 416,-128 576,-128 576,-96 608,-96 608,-64 640,-64 640,-32 672,-32 672,0 768,0 768,32 800,32 800,64 832,64 832,96 960,96 960,0 1056,0 1056,-96 1120,-96 1120,0 1312,0 1312,-64 1376,-64 1376,160 1472,160 1472,-64 1536,-64 1536,0 1664,0 1664,-32 1696,-32 1696,-64 1728,-64 1728,-128 1792,-128 1792,-64 1824,-64 1824,-32 1856,-32 1856,0 1984,0 1984,-640 -128,-640 -128,-224 -96,-224 -96,-160 -64,-160 -64,-96 -32,-96 -32,-32 0,-32 0,0"/>
+  </object>
+  <object x="1792" y="704">
+   <polyline points="0,0 96,0 96,-32 0,-32 0,0"/>
+  </object>
+  <object x="1696" y="704">
+   <polyline points="0,0 0,-64 -96,-64 -96,0 0,0"/>
+  </object>
+  <object x="1344" y="514" width="128" height="64"/>
+  <object x="1120" y="544" width="128" height="64"/>
+  <object x="1024" y="576">
+   <polyline points="0,0 -544,0 -544,32 -576,32 -576,64 -608,64 -608,96 -640,96 -640,128 -672,128 -672,160 -768,160 -768,192 -608,192 -608,160 -576,160 -576,128 -512,128 -512,96 -480,96 -480,64 0,64 0,0"/>
+  </object>
  </objectgroup>
+ <objectgroup name="Objects">
+  <object name="Player" x="366" y="855.333" width="40" height="34.6666"/>
+ </objectgroup>
+ <objectgroup name="Object Layer 3"/>
 </map>
