@@ -48,6 +48,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Animation\PlayerAnimation.cs" />
     <Compile Include="Entities\Drawable\Entity.cs" />
     <Compile Include="Entities\Drawable\Player.cs" />
     <Compile Include="Entities\Logical\Camera2D.cs" />

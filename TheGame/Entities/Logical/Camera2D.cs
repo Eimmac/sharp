@@ -51,7 +51,7 @@ namespace TheGame.Entities.Logical
 
             ScreenCenter = new Vector2(ViewportWidth / 2, ViewportHeight / 2);
             Scale = 1;
-            MoveSpeed = 1.25f;
+            MoveSpeed = 2.25f;
 
             base.Initialize();
         }
