@@ -107,7 +107,7 @@ namespace TheGame.Entities.Drawable
             Console.WriteLine(frame.GetFrame(ChangeFrame));
 
             _sprite = Game.Content.Load<Texture2D>(frame.GetFrame(ChangeFrame));
-            Game
+           
 
             base.LoadContent();
         }
@@ -123,7 +123,7 @@ namespace TheGame.Entities.Drawable
         {
             _spriteBatch.Begin(Camera2D.Instance);
 
-            _spriteBatch.Draw(_sprite, new Rectangle((int)Position.X, (int)Position.Y, 64, 64), _sprite.Bounds, Color.White, Body.Rotation, new Vector2(1000, 1000), direction == directions.left ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
+            _spriteBatch.Draw(_sprite, new Rectangle((int)Position.X, (int)Position.Y, 64, 64), _sprite.Bounds, Color.White, 0f, new Vector2(1000, 1000), direction == directions.left ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 0);
             //_spriteBatch.Draw(_sprite, Position, null, Color.White, Body.Rotation, new Vector2(1000,1000), 0.01f, SpriteEffects.None, 0f);
             _spriteBatch.End();
             base.Draw(gameTime);
