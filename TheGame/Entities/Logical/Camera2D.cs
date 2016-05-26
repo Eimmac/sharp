@@ -51,7 +51,7 @@ namespace TheGame.Entities.Logical
 
             ScreenCenter = new Vector2(ViewportWidth / 2, ViewportHeight / 2);
             Scale = 1;
-            MoveSpeed = 2.25f;
+            MoveSpeed = 5.25f;
 
             base.Initialize();
         }
@@ -76,14 +76,14 @@ namespace TheGame.Entities.Logical
             base.Update(gameTime);
         }
 
-        public bool IsInView(Vector2 position, Texture2D texture)
+        public bool IsInView(Rectangle rect)
         {
             //Check width
-            if (position.X + texture.Width < Position.X - Origin.X || position.X > Position.X + Origin.X)
+            if (rect.X + rect.Width < Position.X - Origin.X || rect.X > Position.X + Origin.X)
                 return false;
 
             //Check height
-            if (position.Y + texture.Height < Position.Y - Origin.Y || position.Y > Position.Y + Origin.Y)
+            if (rect.Y + rect.Height < Position.Y - Origin.Y || rect.Y > Position.Y + Origin.Y)
                 return false;
 
             return true;

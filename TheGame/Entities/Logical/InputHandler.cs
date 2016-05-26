@@ -59,26 +59,26 @@ namespace TheGame.Entities.Logical
                 return false;
             }
 
-            public void Update(GameTime gameTime)
+            public void Update(GameTime gameTime, ActionControlls action)
             {
                 if (IsDown())
                 {
-                    Events.RaiseOnDown(gameTime);
+                    Events.RaiseOnDown(gameTime, action);
                 }
 
                 if (IsUp())
                 {
-                    Events.RaiseOnUp(gameTime);
+                    Events.RaiseOnUp(gameTime, action);
                 }
 
                 if (IsUp() && WasDown())
                 {
-                    Events.RaiseOnReleased(gameTime);
+                    Events.RaiseOnReleased(gameTime, action);
                 }
 
                 if (IsDown() && WasUp())
                 {
-                    Events.RaiseOnPressed(gameTime);
+                    Events.RaiseOnPressed(gameTime, action);
                 }
             }
         }
@@ -118,6 +118,7 @@ namespace TheGame.Entities.Logical
                 {ActionControlls.Left, new ControllBinding {KeyboardKey = Keys.A} },
                 {ActionControlls.Down, new ControllBinding {KeyboardKey = Keys.S} },
                 {ActionControlls.Right, new ControllBinding {KeyboardKey = Keys.D} },
+                {ActionControlls.DebugPhysics, new ControllBinding {KeyboardKey = Keys.F5} },
             };
         }
 
@@ -154,9 +155,9 @@ namespace TheGame.Entities.Logical
             }
 
             //Raise input events
-            foreach (var controlBinding in _controlls.Values)
+            foreach (var controlBinding in _controlls)
             {
-                controlBinding.Update(gameTime);
+                controlBinding.Value.Update(gameTime, controlBinding.Key);
             }
 
             base.Update(gameTime);
@@ -168,42 +169,42 @@ namespace TheGame.Entities.Logical
         /// <summary>
         /// Fires while button is down (pressed)
         /// </summary>
-        public event Action<GameTime> OnDown;
+        public event Action<GameTime, ActionControlls> OnDown;
 
         /// <summary>
         /// Fires while button is up (not pressed)
         /// </summary>
-        public event Action<GameTime> OnUp;
+        public event Action<GameTime, ActionControlls> OnUp;
 
         /// <summary>
         /// Fires when was up and now is down
         /// </summary>
-        public event Action<GameTime> OnPressed;
+        public event Action<GameTime, ActionControlls> OnPressed;
 
         /// <summary>
         /// Fires when was down and now is up
         /// </summary>
-        public event Action<GameTime> OnReleased;
+        public event Action<GameTime, ActionControlls> OnReleased;
 
 
-        public void RaiseOnDown(GameTime gameTime)
+        public void RaiseOnDown(GameTime gameTime, ActionControlls action)
         {
-            OnDown?.Invoke(gameTime);
+            OnDown?.Invoke(gameTime, action);
         }
 
-        public void RaiseOnUp(GameTime gameTime)
+        public void RaiseOnUp(GameTime gameTime, ActionControlls action)
         {
-            OnUp?.Invoke(gameTime);
+            OnUp?.Invoke(gameTime, action);
         }
 
-        public void RaiseOnPressed(GameTime gameTime)
+        public void RaiseOnPressed(GameTime gameTime, ActionControlls action)
         {
-            OnPressed?.Invoke(gameTime);
+            OnPressed?.Invoke(gameTime, action);
         }
 
-        public void RaiseOnReleased(GameTime gameTime)
+        public void RaiseOnReleased(GameTime gameTime, ActionControlls action)
         {
-            OnReleased?.Invoke(gameTime);
+            OnReleased?.Invoke(gameTime, action);
         }
     }
 
@@ -262,7 +263,8 @@ namespace TheGame.Entities.Logical
         Left,
         Right,
         Jump,
-        Shoot
+        Shoot,
+        DebugPhysics
     }
 
     /// <summary>
